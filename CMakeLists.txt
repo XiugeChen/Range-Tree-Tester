@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(RangeTree
     src/main.cpp
-)
+    src/data_generator.cpp include/types.h)
 
 spdlog_enable_warnings(RangeTree)
 target_link_libraries(RangeTree PRIVATE spdlog::spdlog)
