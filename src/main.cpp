@@ -8,7 +8,7 @@ int main() {
     spdlog::set_level(spdlog::level::debug);
     spdlog::info("Start range tree tester");
 
-    
+
 
     return 0;
 }

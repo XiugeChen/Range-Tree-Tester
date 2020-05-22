@@ -13,7 +13,8 @@
 namespace Xiuge::RangeTree {
 
 /**
- * Data generator of this experiment, will produce one of insertion, deletion or search operation
+ * Data generator of this experiment, will produce either a set of points in the universe, or a range query about the
+ * universe.
  */
 class DataGenerator {
 public:
