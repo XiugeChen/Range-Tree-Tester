@@ -43,45 +43,47 @@ struct Query {
     uint32_t y_upper = 0;
 };
 
-struct BinaryTreeNode {
-    BinaryTreeNode(Point newNode) {
-        node = newNode;
-    }
-
-    Point node;
-
-    std::unique_ptr<BinaryTreeNode> left{ nullptr };
-    std::unique_ptr<BinaryTreeNode> right{ nullptr };
-    BinaryTreeNode* parent{ nullptr };
-};
-
 // fractional cascading node
 struct FCNode {
-    FCNode(Point newNode) {
-        node = newNode;
+    FCNode(Point newPoint) {
+        point = newPoint;
     }
 
-    Point node;
+    Point point;
 
     uint32_t successor = 0;
 };
 
 struct OrgRangeTreeNode {
-    OrgRangeTreeNode(Point node) {
-        treeNode.reset(new BinaryTreeNode(node));
+    OrgRangeTreeNode(Point newPoint, int newDimension) {
+        point = newPoint;
+        dimension = newDimension;
     }
 
-    std::unique_ptr<BinaryTreeNode> treeNode{ nullptr };
-    std::unique_ptr<BinaryTreeNode> secTreeNode{ nullptr };
+    Point point;
+    int dimension;
+
+    std::unique_ptr<OrgRangeTreeNode> left{ nullptr };
+    std::unique_ptr<OrgRangeTreeNode> right{ nullptr };
+
+    std::unique_ptr<OrgRangeTreeNode> nextDimRoot{ nullptr };
+
+    OrgRangeTreeNode* parent{ nullptr };
 };
 
 struct FcRangeTreeNode {
-    FcRangeTreeNode(Point node) {
-        treeNode.reset(new BinaryTreeNode(node));
+    FcRangeTreeNode(Point newPoint) {
+        point = newPoint;
     }
 
-    std::unique_ptr<BinaryTreeNode> treeNode{ nullptr };
-    std::vector<FCNode> secFCNode;
+    Point point;
+
+    std::unique_ptr<OrgRangeTreeNode> fstLeft{ nullptr };
+    std::unique_ptr<OrgRangeTreeNode> fstRight{ nullptr };
+
+    std::vector<FCNode> secFCNodes;
+
+    OrgRangeTreeNode* parent{ nullptr };
 };
 
 class IRangeTree {
