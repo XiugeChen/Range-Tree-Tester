@@ -53,8 +53,8 @@ struct FcNode {
 
     Point point;
 
-    uint32_t successor_left = 0;
-    uint32_t successor_right = 0;
+    int32_t successor_left = -1;
+    int32_t successor_right = -1;
 };
 
 struct OrgRangeTreeNode {
