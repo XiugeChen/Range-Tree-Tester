@@ -11,6 +11,15 @@
 
 namespace Xiuge::RangeTree {
 
+namespace {
+
+inline bool in_range(Point pt, Query query) {
+    return query.x_lower <= pt.x && pt.x <= query.x_upper
+           && query.y_lower <= pt.y && pt.y <= query.y_upper;
+}
+
+}
+
 void OrgRangeTree::construct_tree(std::vector<Point>& points, bool isNaive) {
     spdlog::info("[OrgRangeTree] Start original range tree construction");
 
@@ -134,25 +143,18 @@ std::unique_ptr<OrgRangeTreeNode> OrgRangeTree::build_tree(std::vector<Point>& p
     return node;
 }
 
-std::vector<Point> OrgRangeTree::report_points(Query query) {
-    std::vector<Point> foundPts;
-    search_tree(root.get(), foundPts, query, true);
-    return foundPts;
+void OrgRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
+    query_tree(root.get(), foundPts, query, true);
 }
 
-inline bool in_range(Point pt, Query query) {
-    return query.x_lower <= pt.x && pt.x <= query.x_upper
-        && query.y_lower <= pt.y && pt.y <= query.y_upper;
-}
-
-void OrgRangeTree::search_tree(OrgRangeTreeNode* node, std::vector<Point>& points, Query query, bool fstDim) {
+void OrgRangeTree::query_tree(OrgRangeTreeNode* node, std::vector<Point>& points, Query query, bool fstDim) {
     if (node == nullptr)
         return;
 
     // find the successor of x_min and the predecessor of x_max
     OrgRangeTreeNode* succ_min = tree_search(node, fstDim ? query.x_lower : query.y_lower, true, fstDim);
     OrgRangeTreeNode* pred_max = tree_search(node, fstDim ? query.x_upper : query.y_upper, false, fstDim);
-    OrgRangeTreeNode* tree_iter= nullptr;
+    OrgRangeTreeNode* tree_iter = nullptr;
 
     // none of points are in range
     if (succ_min == nullptr || pred_max == nullptr)
@@ -176,7 +178,7 @@ void OrgRangeTree::search_tree(OrgRangeTreeNode* node, std::vector<Point>& point
 
         if (fstDim) {
             if (succ_min->point.x <= tree_iter->point.x && tree_iter->right)
-                search_tree(tree_iter->right->nextDimRoot.get(), points, query, false);
+                query_tree(tree_iter->right->nextDimRoot.get(), points, query, false);
         }
         else {
             if (succ_min->point.y <= tree_iter->point.y)
@@ -197,7 +199,7 @@ void OrgRangeTree::search_tree(OrgRangeTreeNode* node, std::vector<Point>& point
 
         if (fstDim) {
             if (pred_max->point.x >= tree_iter->point.x && tree_iter->left)
-                search_tree(tree_iter->left->nextDimRoot.get(), points, query, false);
+                query_tree(tree_iter->left->nextDimRoot.get(), points, query, false);
         }
         else {
             if (pred_max->point.y >= tree_iter->point.y)

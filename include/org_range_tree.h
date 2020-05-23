@@ -18,7 +18,7 @@ class OrgRangeTree : IRangeTree {
 public:
     void construct_tree(std::vector<Point>& points, bool isNaive) override;
 
-    std::vector<Point> report_points(Query query) override;
+    void report_points(Query query, std::vector<Point>& foundPts) override;
 
 private:
     /* construction helper function */
@@ -45,15 +45,15 @@ private:
      */
     static std::unique_ptr<OrgRangeTreeNode> build_tree(std::vector<Point>& points, const int start, const int end, int dim);
 
-    /* query helper function */
+    /* range query helper function */
     /**
-     * Search along a tree at either first dimension or second dimension, report all nodes that is in query range
+     * Query along a tree at either first dimension or second dimension, report all nodes that is in query range
      * @param node Start node, or the root
      * @param points Store all points that are in the query range
      * @param query
      * @param fstDim True if search along the first dimension
      */
-    void search_tree(OrgRangeTreeNode* node, std::vector<Point>& points, Query query, bool fstDim);
+    void query_tree(OrgRangeTreeNode* node, std::vector<Point>& points, Query query, bool fstDim);
 
     /**
      * Search among the tree, find either the successor or predecessor of the given value

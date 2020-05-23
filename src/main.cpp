@@ -20,7 +20,8 @@ int main() {
     /*
     for (int i = 8; i >= 0; i -= 2) {
         Query query = dataGenerator.generate_a_query(i);
-        auto pts = tree.report_points(query);
+        std::vector<Point> pts;
+        tree.report_points(query, pts);
 
         std::cout << "query with range: [" << query.x_lower << "," << query.x_upper << "] * [" << query.y_lower << "," << query.y_upper << "]\n";
         for (int j = 0; j < pts.size(); ++j) {

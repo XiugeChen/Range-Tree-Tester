@@ -101,9 +101,9 @@ public:
     /**
      * Report all the points that is in the query range
      * @param query Query that specify the range in each dimension
-     * @return All points that are in the query range.
+     * @param foundPts All points that are in the query range.
      */
-    virtual std::vector<Point> report_points(Query query) = 0;
+    virtual void report_points(Query query, std::vector<Point>& foundPts) = 0;
 };
 
 } // namespace ::Xiuge::RangeTree
