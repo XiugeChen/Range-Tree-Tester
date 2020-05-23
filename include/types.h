@@ -6,6 +6,8 @@
 #define RANGETREE_TYPES_H
 
 #include <cstdint>
+#include <memory>
+#include <vector>
 
 namespace Xiuge::RangeTree {
 
@@ -44,14 +46,15 @@ struct Query {
 };
 
 // fractional cascading node
-struct FCNode {
-    FCNode(Point newPoint) {
+struct FcNode {
+    FcNode(Point newPoint) {
         point = newPoint;
     }
 
     Point point;
 
-    uint32_t successor = 0;
+    uint32_t successor_left = 0;
+    uint32_t successor_right = 0;
 };
 
 struct OrgRangeTreeNode {
@@ -78,12 +81,12 @@ struct FcRangeTreeNode {
 
     Point point;
 
-    std::unique_ptr<OrgRangeTreeNode> fstLeft{ nullptr };
-    std::unique_ptr<OrgRangeTreeNode> fstRight{ nullptr };
+    std::unique_ptr<FcRangeTreeNode> left{ nullptr };
+    std::unique_ptr<FcRangeTreeNode> right{ nullptr };
 
-    std::vector<FCNode> secFCNodes;
+    std::vector<FcNode> secFCNodes;
 
-    OrgRangeTreeNode* parent{ nullptr };
+    FcRangeTreeNode* parent{ nullptr };
 };
 
 class IRangeTree {

@@ -12,7 +12,7 @@
 namespace Xiuge::RangeTree {
 
 /**
- * Implementation of Range Tree
+ * Implementation of Original Range Tree
  */
 class OrgRangeTree : IRangeTree {
 public:

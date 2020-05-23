@@ -25,8 +25,8 @@ void OrgRangeTree::construct_tree(std::vector<Point>& points, bool isNaive) {
     root = build_tree(points, 0, static_cast<int>(points.size() - 1), 1);
 
     // Uncomment if debug
-    spdlog::debug("[OrgRangeTree] Constructed tree in first dimension");
-    print_tree(root.get(), 0);
+    // spdlog::debug("[OrgRangeTree] Constructed tree in first dimension");
+    // print_tree(root.get(), 0);
 
     // build on second dimension, either naively using O(n log^2 n) time, or smartly use O(n log n) time.
     if (isNaive) {
@@ -95,16 +95,16 @@ void OrgRangeTree::build_sec_dim_smart(std::vector<Point>& points, OrgRangeTreeN
         // break tie by id
         if (point.x == node->point.x) {
             if (point.id < node->point.id)
-                leftPts.push_back(point);
+                leftPts.emplace_back(point);
             else if (point.id > node->point.id)
-                rightPts.push_back(point);
+                rightPts.emplace_back(point);
             else
                 continue;
         }
         else if(point.x < node->point.x)
-            leftPts.push_back(point);
+            leftPts.emplace_back(point);
         else
-            rightPts.push_back(point);
+            rightPts.emplace_back(point);
     }
 
     build_sec_dim_smart(leftPts, node->left.get());
@@ -112,7 +112,7 @@ void OrgRangeTree::build_sec_dim_smart(std::vector<Point>& points, OrgRangeTreeN
 }
 
 std::unique_ptr<OrgRangeTreeNode> OrgRangeTree::build_tree(std::vector<Point>& points, const int start,
-                                                           const int end, const int dim) {
+                                                         const int end, const int dim) {
     if (start > end)
         return nullptr;
 
@@ -163,7 +163,7 @@ void OrgRangeTree::search_tree(OrgRangeTreeNode* node, std::vector<Point>& point
 
     // return lca if it is in range
     if (in_range(lca->point, query))
-        points.push_back(lca->point);
+        points.emplace_back(lca->point);
 
     // For each node u other than lca on the path from lca to succ_min, add it if it is in range.
     // If first dimention and succ_min.x <= u.x, then report all the points in u’s right sub-tree whose y-coordinates
@@ -172,7 +172,7 @@ void OrgRangeTree::search_tree(OrgRangeTreeNode* node, std::vector<Point>& point
     tree_iter = succ_min;
     while(tree_iter->point.id != lca->point.id) {
         if (in_range(tree_iter->point, query))
-            points.push_back(tree_iter->point);
+            points.emplace_back(tree_iter->point);
 
         if (fstDim) {
             if (succ_min->point.x <= tree_iter->point.x && tree_iter->right)
@@ -193,7 +193,7 @@ void OrgRangeTree::search_tree(OrgRangeTreeNode* node, std::vector<Point>& point
     tree_iter = pred_max;
     while(tree_iter->point.id != lca->point.id) {
         if (in_range(tree_iter->point, query))
-            points.push_back(tree_iter->point);
+            points.emplace_back(tree_iter->point);
 
         if (fstDim) {
             if (pred_max->point.x >= tree_iter->point.x && tree_iter->left)
@@ -292,7 +292,7 @@ OrgRangeTreeNode* OrgRangeTree::find_lca(OrgRangeTreeNode* node, OrgRangeTreeNod
 void OrgRangeTree::in_order_traverse(OrgRangeTreeNode* node, std::vector<Point>& points) {
     if (node) {
         in_order_traverse(node->left.get(), points);
-        points.push_back(node->point);
+        points.emplace_back(node->point);
         in_order_traverse(node->right.get(), points);
     }
 }

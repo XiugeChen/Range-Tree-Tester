@@ -29,7 +29,7 @@ std::vector<Point> DataGenerator::generate_point_set(const uint32_t n) {
     for (uint32_t i = 1; i <= n; ++i) {
         Point pt = generate_a_point();
         pt.id = i;
-        points.push_back(pt);
+        points.emplace_back(pt);
     }
 
     return points;
