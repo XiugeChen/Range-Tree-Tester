@@ -63,7 +63,7 @@ private:
      * @param fstDim True if search along the first dimension
      * @return The successor or predecessor of the given value
      */
-    OrgRangeTreeNode* tree_search(OrgRangeTreeNode* node, uint32_t value, bool findSucc, bool fstDim);
+    static OrgRangeTreeNode* tree_search(OrgRangeTreeNode* node, uint32_t value, bool findSucc, bool fstDim);
 
     /**
      * Find the lowest common ancestor of given two tree node.
@@ -73,7 +73,7 @@ private:
      * @param fstDim True if search along the first dimension
      * @return The lowest common ancestor of given two tree node.
      */
-    OrgRangeTreeNode* find_lca(OrgRangeTreeNode* node, OrgRangeTreeNode* succ, OrgRangeTreeNode* pred, bool fstDim);
+    static OrgRangeTreeNode* find_lca(OrgRangeTreeNode* node, OrgRangeTreeNode* succ, OrgRangeTreeNode* pred, bool fstDim);
 
     /* tree traverse function */
     /**

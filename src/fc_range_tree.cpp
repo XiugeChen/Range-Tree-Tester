@@ -9,6 +9,15 @@
 
 namespace Xiuge::RangeTree {
 
+namespace {
+
+inline bool in_range(Point pt, Query query) {
+    return query.x_lower <= pt.x && pt.x <= query.x_upper
+           && query.y_lower <= pt.y && pt.y <= query.y_upper;
+}
+
+}
+
 void FcRangeTree::construct_tree(std::vector<Point>& points, bool ) {
     spdlog::info("[FcRangeTree] Start factional-cascading range tree construction");
 
@@ -65,15 +74,12 @@ std::unique_ptr<FcRangeTreeNode> FcRangeTree::build_tree(std::vector<Point>& poi
 }
 
 void FcRangeTree::build_sec_dim_array(FcRangeTreeNode* node) {
-    if (node == nullptr || node->secFCNodes.size() <= 0)
+    if (node == nullptr || node->secFCNodes.empty())
         return;
 
     int succ_left = 0, succ_right = 0;
 
     for (auto& secNode : node->secFCNodes) {
-        if (secNode.point.id == node->point.id)
-            continue;
-
         secNode.successor_left = succ_left;
         secNode.successor_right = succ_right;
 
@@ -107,8 +113,210 @@ void FcRangeTree::build_sec_dim_array(FcRangeTreeNode* node) {
     build_sec_dim_array(node->right.get());
 }
 
-std::vector<Point> FcRangeTree::report_points(Query query) {
+void FcRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
+    FcRangeTreeNode* node = root.get();
 
+    // find the successor of x_min and the predecessor of x_max
+    FcRangeTreeNode* succ_min = tree_search(node, query.x_lower, true);
+    FcRangeTreeNode* pred_max = tree_search(node, query.x_upper, false);
+
+    // none of points are in range
+    if (succ_min == nullptr || pred_max == nullptr)
+        return;
+
+    if (succ_min->point.x > pred_max->point.x)
+        return;
+
+    // find the lowest common ancestor of succ_min and pred_max
+    FcRangeTreeNode* lca = find_lca(node, succ_min, pred_max);
+
+    // return lca if it is in range
+    if (in_range(lca->point, query))
+        foundPts.emplace_back(lca->point);
+
+    // find the successor of y_min
+    int index_succ_y_min = vector_search(lca->secFCNodes, query.y_lower, true);
+
+    if (index_succ_y_min < 0)
+        return;
+
+    FcRangeTreeNode* tree_iter = nullptr;
+
+    // For each node u other than lca on the path from lca to succ_min, add it if it is in range.
+    // If first dimention and succ_min.x <= u.x, then report all the points in u’s right sub-tree whose y-coordinates
+    // are in [y_lower, y_upper] in the secondary tree;
+    if (lca->point.id != succ_min->point.id) {
+        tree_iter = lca->left.get();
+        int start_index = lca->secFCNodes[static_cast<unsigned long>(index_succ_y_min)].successor_left;
+        FcNode start_node = tree_iter->secFCNodes[static_cast<unsigned long>(start_index)];
+
+        while(true) {
+            if (in_range(tree_iter->point, query))
+                foundPts.emplace_back(tree_iter->point);
+
+            if (succ_min->point.x <= tree_iter->point.x && tree_iter->right) {
+                auto secFcNode = tree_iter->right->secFCNodes;
+                auto i = static_cast<unsigned long>(start_node.successor_right);
+
+                while(i < secFcNode.size() && secFcNode[i].point.y <= query.y_upper) {
+                    foundPts.emplace_back(secFcNode[i].point);
+                    ++i;
+                }
+            }
+
+            if (succ_min->point.x < tree_iter->point.x) {
+                start_index = start_node.successor_left;
+                tree_iter = tree_iter->left.get();
+            }
+            else if (succ_min->point.x > tree_iter->point.x) {
+                start_index = start_node.successor_right;
+                tree_iter = tree_iter->right.get();
+            }
+            else {
+                if (succ_min->point.id < tree_iter->point.id) {
+                    start_index = start_node.successor_left;
+                    tree_iter = tree_iter->left.get();
+                }
+                else if (succ_min->point.id > tree_iter->point.id) {
+                    start_index = start_node.successor_right;
+                    tree_iter = tree_iter->right.get();
+                }
+                else
+                    break;
+            }
+
+            if (static_cast<unsigned long>(start_index) < tree_iter->secFCNodes.size())
+                start_node = tree_iter->secFCNodes[static_cast<unsigned long>(start_index)];
+            else
+                break;
+        }
+    }
+
+    // for each node u other than lca on the path from lca to pred_max, add it if it is in range
+    // If first dimention and pred_max.x >= u.x, then report all the points in u’s left sub-tree whose y-coordinates
+    // are in [y_lower, y_upper] in the secondary tree;
+    if (lca->point.id != pred_max->point.id) {
+        tree_iter = lca->right.get();
+        int start_index = lca->secFCNodes[static_cast<unsigned long>(index_succ_y_min)].successor_right;
+        FcNode start_node = tree_iter->secFCNodes[static_cast<unsigned long>(start_index)];
+
+        while (true) {
+            if (in_range(tree_iter->point, query))
+                foundPts.emplace_back(tree_iter->point);
+
+            if (pred_max->point.x >= tree_iter->point.x && tree_iter->left) {
+                auto secFcNode = tree_iter->left->secFCNodes;
+                auto i = static_cast<unsigned long>(start_node.successor_left);
+
+                while (i < secFcNode.size() && secFcNode[i].point.y <= query.y_upper) {
+                    foundPts.emplace_back(secFcNode[i].point);
+                    ++i;
+                }
+            }
+
+            if (pred_max->point.x < tree_iter->point.x) {
+                start_index = start_node.successor_left;
+                tree_iter = tree_iter->left.get();
+            } else if (pred_max->point.x > tree_iter->point.x) {
+                start_index = start_node.successor_right;
+                tree_iter = tree_iter->right.get();
+            } else {
+                if (pred_max->point.id < tree_iter->point.id) {
+                    start_index = start_node.successor_left;
+                    tree_iter = tree_iter->left.get();
+                } else if (pred_max->point.id > tree_iter->point.id) {
+                    start_index = start_node.successor_right;
+                    tree_iter = tree_iter->right.get();
+                } else
+                    break;
+            }
+
+            if (static_cast<unsigned long>(start_index) < tree_iter->secFCNodes.size())
+                start_node = tree_iter->secFCNodes[static_cast<unsigned long>(start_index)];
+            else
+                break;
+        }
+    }
+}
+
+FcRangeTreeNode* FcRangeTree::tree_search(FcRangeTreeNode* node, uint32_t value, bool findSucc) {
+    FcRangeTreeNode* result = nullptr;
+
+    if (findSucc) {
+        while (node != nullptr) {
+            if (node->point.x >= value) {
+                result = node;
+                node = node->left.get();
+            }
+            else
+                node = node->right.get();
+        }
+    }
+    else {
+        while (node != nullptr) {
+            if (node->point.x <= value) {
+                result = node;
+                node = node->right.get();
+            }
+            else
+                node = node->left.get();
+        }
+    }
+
+    return result;
+}
+
+int FcRangeTree::vector_search(std::vector<FcNode>& vector, uint32_t value, bool findSucc) {
+    int result = -1;
+    int upper = static_cast<int>(vector.size() - 1), lower = 0;
+
+    if (findSucc) {
+        while (upper > lower) {
+            int mid = (upper - lower) / 2 + lower;
+
+            if (vector[static_cast<unsigned long>(mid)].point.y >= value) {
+                result = mid;
+                upper = mid - 1;
+            }
+            else
+                lower = mid + 1;
+        }
+    }
+    else {
+        while (upper > lower) {
+            int mid = (upper - lower) / 2 + lower;
+
+            if (vector[static_cast<unsigned long>(mid)].point.x <= value) {
+                result = mid;
+                lower = mid + 1;
+            }
+            else
+                upper = mid - 1;
+        }
+    }
+
+    return result;
+}
+
+FcRangeTreeNode* FcRangeTree::find_lca(FcRangeTreeNode* node, FcRangeTreeNode* succ, FcRangeTreeNode* pred) {
+    FcRangeTreeNode* tree_iter = node;
+
+    while (tree_iter != nullptr) {
+        if (tree_iter->point.id == succ->point.id || tree_iter->point.id == pred->point.id)
+            return tree_iter;
+
+        if (tree_iter->point.x >= succ->point.x) {
+            if (tree_iter->point.x <= pred->point.x)
+                return tree_iter;
+            else
+                tree_iter = tree_iter->left.get();
+        }
+        else {
+            tree_iter = tree_iter->right.get();
+        }
+    }
+
+    return nullptr;
 }
 
 void FcRangeTree::print_tree(FcRangeTreeNode* node, const int level) {

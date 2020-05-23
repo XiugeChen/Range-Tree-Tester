@@ -16,7 +16,7 @@ class FcRangeTree : IRangeTree {
 public:
     void construct_tree(std::vector<Point>& points, bool ) override;
 
-    std::vector<Point> report_points(Query query) override;
+    void report_points(Query query, std::vector<Point>& foundPts) override;
 
 private:
     /* construction helper function */
@@ -33,7 +33,35 @@ private:
      * Recursively build secondary fractional cascading array for each of the node in the range tree
      * @param node Start node
      */
-    void build_sec_dim_array(FcRangeTreeNode* node);
+    static void build_sec_dim_array(FcRangeTreeNode* node);
+
+    /* range query helper function */
+    /**
+     * Search among the tree, find either the successor or predecessor of the given value
+     * @param node
+     * @param value
+     * @param findSucc True if return successor
+     * @return The successor or predecessor of the given value
+     */
+    static FcRangeTreeNode* tree_search(FcRangeTreeNode* node, uint32_t value, bool findSucc);
+
+    /**
+     * Search among the vector, find either the successor or predecessor of the given value
+     * @param node
+     * @param value
+     * @param findSucc True if return successor
+     * @return The successor or predecessor of the given value
+     */
+    int vector_search(std::vector<FcNode>& vector, uint32_t value, bool findSucc);
+
+    /**
+     * Find the lowest common ancestor of given two tree node.
+     * @param node Start root
+     * @param succ
+     * @param pred
+     * @return The lowest common ancestor of given two tree node.
+     */
+    static FcRangeTreeNode* find_lca(FcRangeTreeNode* node, FcRangeTreeNode* succ, FcRangeTreeNode* pred);
 
     /* tree traverse function */
     /**

@@ -17,18 +17,19 @@ int main() {
     std::vector<Point> points = dataGenerator.generate_point_set(10);
 
     tree.construct_tree(points, false);
-    /*
+
     for (int i = 8; i >= 0; i -= 2) {
         Query query = dataGenerator.generate_a_query(i);
+        std::cout << "query with range: [" << query.x_lower << "," << query.x_upper << "] * [" << query.y_lower << "," << query.y_upper << "]\n";
+
         std::vector<Point> pts;
         tree.report_points(query, pts);
 
-        std::cout << "query with range: [" << query.x_lower << "," << query.x_upper << "] * [" << query.y_lower << "," << query.y_upper << "]\n";
         for (int j = 0; j < pts.size(); ++j) {
             std::cout << pts[j].id << "-" << pts[j].x << "-"  << pts[j].y  << ",  ";
         }
         std::cout << "\n";
     }
-    */
+
     return 0;
 }

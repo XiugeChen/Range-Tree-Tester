@@ -151,13 +151,18 @@ void OrgRangeTree::query_tree(OrgRangeTreeNode* node, std::vector<Point>& points
     if (node == nullptr)
         return;
 
-    // find the successor of x_min and the predecessor of x_max
+    // find the successor of x_min/y_min and the predecessor of x_max/y_max
     OrgRangeTreeNode* succ_min = tree_search(node, fstDim ? query.x_lower : query.y_lower, true, fstDim);
     OrgRangeTreeNode* pred_max = tree_search(node, fstDim ? query.x_upper : query.y_upper, false, fstDim);
     OrgRangeTreeNode* tree_iter = nullptr;
 
     // none of points are in range
     if (succ_min == nullptr || pred_max == nullptr)
+        return;
+
+    if (fstDim && succ_min->point.x > pred_max->point.x)
+        return;
+    if (!fstDim && succ_min->point.y > pred_max->point.y)
         return;
 
     // find the lowest common ancestor of succ_x_min and pred_x_max
