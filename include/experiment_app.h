@@ -18,9 +18,9 @@ class ExperimentApp {
 public:
     void construct_time_data_length(const std::vector<uint32_t>& dataLens);
 
-    void query_time_query_range();
+    void query_time_data_length(const std::vector<uint32_t>& dataLens);
 
-    void query_time_data_length();
+    void query_time_query_range(const std::vector<double>& queryRangePers);
 
 private:
     DataGenerator mDataGenerator;
