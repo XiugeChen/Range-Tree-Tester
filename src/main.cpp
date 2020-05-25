@@ -1,8 +1,6 @@
-#include <iostream>
 #include <spdlog/spdlog.h>
 
-#include "fc_range_tree.h"
-#include "data_generator.h"
+#include "experiment_app.h"
 
 using namespace ::Xiuge::RangeTree;
 
@@ -10,26 +8,15 @@ int main() {
     spdlog::set_level(spdlog::level::debug);
     spdlog::info("Start range tree tester");
 
-    FcRangeTree tree;
-    DataGenerator dataGenerator;
+    ExperimentApp experiment;
+    auto data_len_base = static_cast<const uint32_t>(2 * pow(10, 3));
 
-    dataGenerator.set_range(1, 10);
-    std::vector<Point> points = dataGenerator.generate_point_set(10);
+    // test with construction time
+    std::vector<uint32_t> dataLens{data_len_base, 2 * data_len_base, 4 * data_len_base, 8 * data_len_base,
+                                   16 * data_len_base, 32 * data_len_base, 64 * data_len_base, 128 * data_len_base,
+                                   256 * data_len_base, 512 * data_len_base};
 
-    tree.construct_tree(points, false);
-
-    for (int i = 8; i >= 0; i -= 2) {
-        Query query = dataGenerator.generate_a_query(i);
-        std::cout << "query with range: [" << query.x_lower << "," << query.x_upper << "] * [" << query.y_lower << "," << query.y_upper << "]\n";
-
-        std::vector<Point> pts;
-        tree.report_points(query, pts);
-
-        for (int j = 0; j < pts.size(); ++j) {
-            std::cout << pts[j].id << "-" << pts[j].x << "-"  << pts[j].y  << ",  ";
-        }
-        std::cout << "\n";
-    }
+    experiment.construct_time_data_length(dataLens);
 
     return 0;
 }

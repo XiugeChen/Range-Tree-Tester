@@ -29,7 +29,7 @@ void FcRangeTree::construct_tree(std::vector<Point>& points, bool ) {
          });
 
     // build on first dimension
-    root = build_tree(points, 0, static_cast<int>(points.size() - 1));
+    mRoot = build_tree(points, 0, static_cast<int>(points.size() - 1));
 
     // Uncomment if debug
     // spdlog::debug("[OrgRangeTree] Constructed tree in first dimension");
@@ -46,9 +46,9 @@ void FcRangeTree::construct_tree(std::vector<Point>& points, bool ) {
          });
 
     for (auto point : points)
-        root->secFCNodes.emplace_back(FcNode(point));
+        mRoot->secFCNodes.emplace_back(FcNode(point));
 
-    build_sec_dim_array(root.get());
+    build_sec_dim_array(mRoot.get());
 }
 
 std::unique_ptr<FcRangeTreeNode> FcRangeTree::build_tree(std::vector<Point>& points, const int start, const int end) {
@@ -114,7 +114,7 @@ void FcRangeTree::build_sec_dim_array(FcRangeTreeNode* node) {
 }
 
 void FcRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
-    FcRangeTreeNode* node = root.get();
+    FcRangeTreeNode* node = mRoot.get();
 
     // find the successor of x_min and the predecessor of x_max
     FcRangeTreeNode* succ_min = tree_search(node, query.x_lower, true);

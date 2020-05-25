@@ -18,7 +18,8 @@ add_executable(RangeTree
     src/main.cpp
     src/data_generator.cpp
     src/org_range_tree.cpp
-        src/fc_range_tree.cpp)
+    src/fc_range_tree.cpp
+    src/experiment_app.cpp)
 
 spdlog_enable_warnings(RangeTree)
 target_link_libraries(RangeTree PRIVATE spdlog::spdlog)

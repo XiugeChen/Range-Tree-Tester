@@ -90,7 +90,7 @@ private:
      */
     static void print_tree(OrgRangeTreeNode* node, const int level);
 
-    std::unique_ptr<OrgRangeTreeNode> root{nullptr};
+    std::unique_ptr<OrgRangeTreeNode> mRoot{nullptr};
 };
 
 } // namespace ::Xiuge::RangeTree

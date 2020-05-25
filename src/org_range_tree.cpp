@@ -31,7 +31,7 @@ void OrgRangeTree::construct_tree(std::vector<Point>& points, bool isNaive) {
          });
 
     // build on first dimension
-    root = build_tree(points, 0, static_cast<int>(points.size() - 1), 1);
+    mRoot = build_tree(points, 0, static_cast<int>(points.size() - 1), 1);
 
     // Uncomment if debug
     // spdlog::debug("[OrgRangeTree] Constructed tree in first dimension");
@@ -40,7 +40,7 @@ void OrgRangeTree::construct_tree(std::vector<Point>& points, bool isNaive) {
     // build on second dimension, either naively using O(n log^2 n) time, or smartly use O(n log n) time.
     if (isNaive) {
         spdlog::info("[OrgRangeTree] Start naive secondary tree construction");
-        build_sec_dim_naive(root.get());
+        build_sec_dim_naive(mRoot.get());
     }
     else {
         // in-place sort ascendingly by y, break tie by id
@@ -51,7 +51,7 @@ void OrgRangeTree::construct_tree(std::vector<Point>& points, bool isNaive) {
              });
 
         spdlog::info("[OrgRangeTree] Start smart secondary tree construction");
-        build_sec_dim_smart(points, root.get());
+        build_sec_dim_smart(points, mRoot.get());
     }
 }
 
@@ -144,7 +144,7 @@ std::unique_ptr<OrgRangeTreeNode> OrgRangeTree::build_tree(std::vector<Point>& p
 }
 
 void OrgRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
-    query_tree(root.get(), foundPts, query, true);
+    query_tree(mRoot.get(), foundPts, query, true);
 }
 
 void OrgRangeTree::query_tree(OrgRangeTreeNode* node, std::vector<Point>& points, Query query, bool fstDim) {

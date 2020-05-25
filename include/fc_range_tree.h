@@ -71,7 +71,7 @@ private:
      */
     static void print_tree(FcRangeTreeNode* node, const int level);
 
-    std::unique_ptr<FcRangeTreeNode> root{nullptr};
+    std::unique_ptr<FcRangeTreeNode> mRoot{nullptr};
 };
 
 } // namespace ::Xiuge::RangeTree
