@@ -125,7 +125,7 @@ std::unique_ptr<OrgRangeTreeNode> OrgRangeTree::build_tree(std::vector<Point>& p
     if (start > end)
         return nullptr;
 
-    int mid = (start + end) / 2; // integer division
+    int mid = start + (end - start) / 2; // integer division
 
     std::unique_ptr<OrgRangeTreeNode> node(new OrgRangeTreeNode(points[static_cast<unsigned long>(mid)], dim));
 
