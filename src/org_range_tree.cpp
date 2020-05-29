@@ -155,14 +155,6 @@ void OrgRangeTree::query_tree(OrgRangeTreeNode* node, std::vector<Point>& points
     // find the lowest common ancestor of succ_x_min and pred_x_max
     OrgRangeTreeNode* lca = find_lca(node, succ_min, pred_max, fstDim);
 
-    //std::cout << "Query: " << (fstDim ? "First" : "Second") << ", [" << query.x_lower << "," << query.x_upper << "] * ["
-     //           << query.y_lower << "," << query.y_upper << "]\n";
-
-    //std::cout << "Succ: " << succ_min->point.id << "-" << succ_min->point.x << "-" << succ_min->point.y << std::endl;
-    //std::cout << "Pred: " << pred_max->point.id << "-" << pred_max->point.x << "-" << pred_max->point.y << std::endl;
-    //std::cout << "LCA: " << lca->point.id << "-" << lca->point.x << "-" << lca->point.y << std::endl;
-    //print_tree(lca, 0);
-
     // return lca if it is in range
     if (in_range(lca->point, query))
         points.emplace_back(lca->point);
@@ -175,9 +167,6 @@ void OrgRangeTree::query_tree(OrgRangeTreeNode* node, std::vector<Point>& points
         tree_iter = lca->left.get();
 
         while(true) {
-            //std::cout << "Next loop\n";
-            //std::cout << tree_iter->point.id << "-" << tree_iter->point.x << "-" << tree_iter->point.y << std::endl;
-
             if (in_range(tree_iter->point, query))
                 points.emplace_back(tree_iter->point);
 

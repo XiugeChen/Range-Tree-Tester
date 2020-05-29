@@ -144,11 +144,11 @@ void FcRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
                 foundPts.emplace_back(tree_iter->point);
 
             if (succ_min->point.x <= tree_iter->point.x && tree_iter->right) {
-                auto secFcNode = tree_iter->right->secFCNodes;
                 auto i = static_cast<unsigned long>(start_node.successor_right);
+                auto size = tree_iter->right->secFCNodes.size();
 
-                while(i < secFcNode.size() && secFcNode[i].point.y <= query.y_upper) {
-                    foundPts.emplace_back(secFcNode[i].point);
+                while(i < size && tree_iter->right->secFCNodes[i].point.y <= query.y_upper) {
+                    foundPts.emplace_back(tree_iter->right->secFCNodes[i].point);
                     ++i;
                 }
             }
@@ -184,11 +184,11 @@ void FcRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
                 foundPts.emplace_back(tree_iter->point);
 
             if (pred_max->point.x >= tree_iter->point.x && tree_iter->left) {
-                auto secFcNode = tree_iter->left->secFCNodes;
                 auto i = static_cast<unsigned long>(start_node.successor_left);
+                auto size = tree_iter->left->secFCNodes.size();
 
-                while (i < secFcNode.size() && secFcNode[i].point.y <= query.y_upper) {
-                    foundPts.emplace_back(secFcNode[i].point);
+                while (i < size  && tree_iter->left->secFCNodes[i].point.y <= query.y_upper) {
+                    foundPts.emplace_back(tree_iter->left->secFCNodes[i].point);
                     ++i;
                 }
             }

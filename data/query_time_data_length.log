@@ -1,72 +1,72 @@
-[2020-05-28 17:12:07.850] [info] Start range tree tester
-[2020-05-28 17:12:07.851] [info] Start query time test with various data length
-[2020-05-28 17:12:07.851] [info] Start with data length=2000
-[2020-05-28 17:12:07.852] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:07.854] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:07.874] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=2000, range=50000, k=4, running time=8321
-[2020-05-28 17:12:07.874] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:07.875] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:07.886] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=2000, range=50000, k=4, running time=12864
-[2020-05-28 17:12:07.893] [info] Start with data length=4000
-[2020-05-28 17:12:07.894] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:07.899] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:07.946] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=4000, range=50000, k=9, running time=9976
-[2020-05-28 17:12:07.946] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:07.950] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:07.980] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=4000, range=50000, k=9, running time=71738
-[2020-05-28 17:12:08.000] [info] Start with data length=8000
-[2020-05-28 17:12:08.003] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:08.012] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:08.120] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=8000, range=50000, k=20, running time=22623
-[2020-05-28 17:12:08.120] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:08.126] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:08.197] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=8000, range=50000, k=19, running time=43745
-[2020-05-28 17:12:08.319] [info] Start with data length=16000
-[2020-05-28 17:12:08.338] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:08.356] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:08.631] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=16000, range=50000, k=39, running time=14284
-[2020-05-28 17:12:08.631] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:08.645] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:08.730] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=16000, range=50000, k=39, running time=32892
-[2020-05-28 17:12:08.806] [info] Start with data length=32000
-[2020-05-28 17:12:08.818] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:08.864] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:09.382] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=32000, range=50000, k=79, running time=36302
-[2020-05-28 17:12:09.382] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:09.433] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:09.638] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=32000, range=50000, k=79, running time=51476
-[2020-05-28 17:12:09.792] [info] Start with data length=64000
-[2020-05-28 17:12:09.816] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:09.884] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:10.750] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=64000, range=50000, k=161, running time=41028
-[2020-05-28 17:12:10.750] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:10.796] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:11.077] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=64000, range=50000, k=160, running time=109484
-[2020-05-28 17:12:11.325] [info] Start with data length=128000
-[2020-05-28 17:12:11.362] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:11.512] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:12.811] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=128000, range=50000, k=322, running time=47066
-[2020-05-28 17:12:12.811] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:12.908] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:13.595] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=128000, range=50000, k=321, running time=145954
-[2020-05-28 17:12:14.164] [info] Start with data length=256000
-[2020-05-28 17:12:14.243] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:14.480] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:17.140] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=256000, range=50000, k=638, running time=77774
-[2020-05-28 17:12:17.140] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:17.310] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:18.320] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=256000, range=50000, k=638, running time=258055
-[2020-05-28 17:12:19.342] [info] Start with data length=512000
-[2020-05-28 17:12:19.478] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:19.951] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:25.562] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=512000, range=50000, k=1277, running time=148425
-[2020-05-28 17:12:25.562] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:25.929] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:28.034] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=512000, range=50000, k=1276, running time=521357
-[2020-05-28 17:12:30.246] [info] Start with data length=1024000
-[2020-05-28 17:12:30.515] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:12:31.481] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:12:42.358] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1024000, range=50000, k=2559, running time=271888
-[2020-05-28 17:12:42.358] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:12:43.126] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:12:47.402] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1024000, range=50000, k=2558, running time=967524
+[2020-05-29 11:21:13.053] [info] Start range tree tester
+[2020-05-29 11:21:13.053] [info] Start query time test with various data length
+[2020-05-29 11:21:13.053] [info] Start with data length=2000
+[2020-05-29 11:21:13.054] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:13.057] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:13.071] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=2000, range=50000, k=4, running time=4
+[2020-05-29 11:21:13.071] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:13.072] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:13.079] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=2000, range=50000, k=4, running time=5
+[2020-05-29 11:21:13.085] [info] Start with data length=4000
+[2020-05-29 11:21:13.086] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:13.089] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:13.118] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=4000, range=50000, k=9, running time=7
+[2020-05-29 11:21:13.118] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:13.121] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:13.134] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=4000, range=50000, k=9, running time=6
+[2020-05-29 11:21:13.144] [info] Start with data length=8000
+[2020-05-29 11:21:13.146] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:13.153] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:13.213] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=8000, range=50000, k=19, running time=10
+[2020-05-29 11:21:13.213] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:13.217] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:13.242] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=8000, range=50000, k=19, running time=7
+[2020-05-29 11:21:13.264] [info] Start with data length=16000
+[2020-05-29 11:21:13.268] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:13.280] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:13.417] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=16000, range=50000, k=40, running time=13
+[2020-05-29 11:21:13.417] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:13.427] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:13.481] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=16000, range=50000, k=40, running time=11
+[2020-05-29 11:21:13.527] [info] Start with data length=32000
+[2020-05-29 11:21:13.536] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:13.562] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:13.830] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=32000, range=50000, k=78, running time=19
+[2020-05-29 11:21:13.830] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:13.850] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:13.957] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=32000, range=50000, k=78, running time=17
+[2020-05-29 11:21:14.058] [info] Start with data length=64000
+[2020-05-29 11:21:14.075] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:14.128] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:14.683] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=64000, range=50000, k=158, running time=27
+[2020-05-29 11:21:14.683] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:14.726] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:14.945] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=64000, range=50000, k=157, running time=24
+[2020-05-29 11:21:15.154] [info] Start with data length=128000
+[2020-05-29 11:21:15.187] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:15.298] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:16.437] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=128000, range=50000, k=321, running time=46
+[2020-05-29 11:21:16.437] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:16.522] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:16.973] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=128000, range=50000, k=321, running time=38
+[2020-05-29 11:21:17.410] [info] Start with data length=256000
+[2020-05-29 11:21:17.487] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:17.731] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:20.106] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=256000, range=50000, k=636, running time=71
+[2020-05-29 11:21:20.106] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:20.279] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:21.201] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=256000, range=50000, k=636, running time=64
+[2020-05-29 11:21:22.107] [info] Start with data length=512000
+[2020-05-29 11:21:22.240] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:22.710] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:27.679] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=512000, range=50000, k=1279, running time=123
+[2020-05-29 11:21:27.679] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:28.031] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:29.938] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=512000, range=50000, k=1279, running time=112
+[2020-05-29 11:21:31.851] [info] Start with data length=1024000
+[2020-05-29 11:21:32.115] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 11:21:33.090] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 11:21:43.583] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1024000, range=50000, k=2559, running time=225
+[2020-05-29 11:21:43.583] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 11:21:44.309] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 11:21:48.300] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1024000, range=50000, k=2559, running time=209
