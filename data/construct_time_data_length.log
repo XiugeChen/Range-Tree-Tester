@@ -1,72 +1,75 @@
-[2020-05-29 10:50:16.644] [info] Start range tree tester
-[2020-05-29 10:50:16.650] [info] Start construction time test with various data length
-[2020-05-29 10:50:16.650] [info] Start with data length=2000
-[2020-05-29 10:50:16.651] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:16.653] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:16.669] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=2000, running time=17840
-[2020-05-29 10:50:16.669] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:16.671] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:16.687] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=2000, running time=17594
-[2020-05-29 10:50:16.695] [info] Start with data length=4000
-[2020-05-29 10:50:16.696] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:16.699] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:16.733] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=4000, running time=36539
-[2020-05-29 10:50:16.733] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:16.736] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:16.765] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=4000, running time=31803
-[2020-05-29 10:50:16.782] [info] Start with data length=8000
-[2020-05-29 10:50:16.785] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:16.790] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:16.866] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=8000, running time=80984
-[2020-05-29 10:50:16.866] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:16.873] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:16.943] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=8000, running time=77160
-[2020-05-29 10:50:16.978] [info] Start with data length=16000
-[2020-05-29 10:50:16.982] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:16.992] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:17.145] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=16000, running time=162536
-[2020-05-29 10:50:17.145] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:17.158] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:17.290] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=16000, running time=144635
-[2020-05-29 10:50:17.370] [info] Start with data length=32000
-[2020-05-29 10:50:17.379] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:17.399] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:17.724] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=32000, running time=345099
-[2020-05-29 10:50:17.724] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:17.751] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:18.030] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=32000, running time=306146
-[2020-05-29 10:50:18.202] [info] Start with data length=64000
-[2020-05-29 10:50:18.220] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:18.265] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:19.008] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=64000, running time=787928
-[2020-05-29 10:50:19.008] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:19.071] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:19.708] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=64000, running time=699773
-[2020-05-29 10:50:20.163] [info] Start with data length=128000
-[2020-05-29 10:50:20.206] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:20.305] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:21.880] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=128000, running time=1674598
-[2020-05-29 10:50:21.881] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:22.003] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:23.291] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=128000, running time=1410141
-[2020-05-29 10:50:24.133] [info] Start with data length=256000
-[2020-05-29 10:50:24.221] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:24.439] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:27.739] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=256000, running time=3518033
-[2020-05-29 10:50:27.740] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:27.993] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:30.709] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=256000, running time=2969051
-[2020-05-29 10:50:32.375] [info] Start with data length=512000
-[2020-05-29 10:50:32.521] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:32.894] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:50:39.373] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=512000, running time=6852576
-[2020-05-29 10:50:39.374] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:39.845] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:50:44.892] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=512000, running time=5517497
-[2020-05-29 10:50:47.921] [info] Start with data length=1024000
-[2020-05-29 10:50:48.189] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:50:48.882] [info] [OrgRangeTree] Start naive secondary tree construction
-[2020-05-29 10:51:01.930] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=1024000, running time=13740277
-[2020-05-29 10:51:01.932] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-29 10:51:02.902] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-29 10:51:13.267] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=1024000, running time=11334668
+/Users/xiugechen/Desktop/Unimelb/2020Sem1/COMP90077/Project/RangeTree/cmake-build-debug/RangeTree
+[2020-05-29 13:10:06.084] [info] Start range tree tester
+[2020-05-29 13:10:06.085] [info] Start construction time test with various data length
+[2020-05-29 13:10:06.085] [info] Start with data length=2000
+[2020-05-29 13:10:06.086] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:06.087] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:06.110] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=2000, running time=24042
+[2020-05-29 13:10:06.110] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:06.112] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:06.131] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=2000, running time=20832
+[2020-05-29 13:10:06.141] [info] Start with data length=4000
+[2020-05-29 13:10:06.143] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:06.146] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:06.190] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=4000, running time=47545
+[2020-05-29 13:10:06.190] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:06.194] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:06.247] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=4000, running time=41238
+[2020-05-29 13:10:06.306] [info] Start with data length=8000
+[2020-05-29 13:10:06.310] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:06.326] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:06.480] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=8000, running time=169501
+[2020-05-29 13:10:06.481] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:06.500] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:06.588] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=8000, running time=106932
+[2020-05-29 13:10:06.644] [info] Start with data length=16000
+[2020-05-29 13:10:06.651] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:06.668] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:06.940] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=16000, running time=288835
+[2020-05-29 13:10:06.940] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:06.984] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:07.222] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=16000, running time=272013
+[2020-05-29 13:10:07.312] [info] Start with data length=32000
+[2020-05-29 13:10:07.323] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:07.350] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:07.678] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=32000, running time=354557
+[2020-05-29 13:10:07.678] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:07.705] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:08.021] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=32000, running time=343021
+[2020-05-29 13:10:08.192] [info] Start with data length=64000
+[2020-05-29 13:10:08.209] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:08.258] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:08.963] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=64000, running time=754080
+[2020-05-29 13:10:08.963] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:09.037] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:09.850] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=64000, running time=686903
+[2020-05-29 13:10:10.263] [info] Start with data length=128000
+[2020-05-29 13:10:10.307] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:10.398] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:11.898] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=128000, running time=1591904
+[2020-05-29 13:10:11.899] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:12.014] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:13.290] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=128000, running time=1391116
+[2020-05-29 13:10:14.080] [info] Start with data length=256000
+[2020-05-29 13:10:14.148] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:14.330] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:17.451] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=256000, running time=3302721
+[2020-05-29 13:10:17.452] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:17.692] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:20.313] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=256000, running time=2860969
+[2020-05-29 13:10:22.141] [info] Start with data length=512000
+[2020-05-29 13:10:22.303] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:22.697] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:10:30.752] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=512000, running time=8448401
+[2020-05-29 13:10:30.753] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:31.355] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:10:37.380] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=512000, running time=6626540
+[2020-05-29 13:10:41.073] [info] Start with data length=1024000
+[2020-05-29 13:10:41.352] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:10:42.093] [info] [OrgRangeTree] Start naive secondary tree construction
+[2020-05-29 13:11:01.158] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with naive construction algorithm and datalength=1024000, running time=19805412
+[2020-05-29 13:11:01.171] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 13:11:02.664] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 13:11:15.029] [info] [ExperimentApp] Finish construction time testing on Original Range Tree with smart construction algorithm and datalength=1024000, running time=13857526
+
+Process finished with exit code 0
