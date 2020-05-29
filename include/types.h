@@ -28,6 +28,40 @@ struct Point {
     uint32_t id;
     uint32_t x;
     uint32_t y;
+
+    bool operator==(const Point& elem) {
+        return id == elem.id;
+    }
+
+    bool operator<(const Point& elem) const {
+        if (x < elem.x)
+            return true;
+        else if (x > elem.x)
+            return false;
+        else {
+            if (y < elem.y)
+                return true;
+            else if (y > elem.y)
+                return false;
+            else
+                return id < elem.id;
+        }
+    }
+
+    bool operator>(const Point& elem) {
+        if (x > elem.x)
+            return true;
+        else if (x < elem.x)
+            return false;
+        else {
+            if (y > elem.y)
+                return true;
+            else if (y < elem.y)
+                return false;
+            else
+                return id > elem.id;
+        }
+    }
 };
 
 struct Query {

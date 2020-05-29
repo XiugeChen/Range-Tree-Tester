@@ -21,12 +21,8 @@ inline bool in_range(Point pt, Query query) {
 void FcRangeTree::construct_tree(std::vector<Point>& points, bool ) {
     spdlog::info("[FcRangeTree] Start factional-cascading range tree construction");
 
-    // in-place sort ascendingly by x, break tie by id
-    sort(points.begin(), points.end(),
-         [](const Point& a, const Point& b) -> bool
-         {
-             return a.x == b.x ? a.id < b.id : a.x < b.x;
-         });
+    // in-place sort ascendingly by x, and then by y, break tie by id
+    sort(points.begin(), points.end());
 
     // build on first dimension
     mRoot = build_tree(points, 0, static_cast<int>(points.size() - 1));
@@ -84,18 +80,14 @@ void FcRangeTree::build_sec_dim_array(FcRangeTreeNode* node) {
         secNode.successor_right = succ_right;
 
         if (node->left) {
-            if (secNode.point.x < node->point.x
-               || (secNode.point.x == node->point.x && secNode.point.id < node->point.id)) {
-
+            if (secNode.point < node->point) {
                 node->left->secFCNodes.emplace_back(FcNode(secNode.point));
                 ++succ_left;
             }
         }
 
         if (node->right) {
-            if (secNode.point.x > node->point.x
-                || (secNode.point.x == node->point.x && secNode.point.id > node->point.id)) {
-
+            if (secNode.point > node->point) {
                 node->right->secFCNodes.emplace_back(FcNode(secNode.point));
                 ++succ_right;
             }
@@ -121,10 +113,7 @@ void FcRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
     FcRangeTreeNode* pred_max = tree_search(node, query.x_upper, false);
 
     // none of points are in range
-    if (succ_min == nullptr || pred_max == nullptr)
-        return;
-
-    if (succ_min->point.x > pred_max->point.x)
+    if (succ_min == nullptr || pred_max == nullptr || succ_min->point.x > pred_max->point.x)
         return;
 
     // find the lowest common ancestor of succ_min and pred_max
@@ -164,25 +153,15 @@ void FcRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
                 }
             }
 
-            if (succ_min->point.x < tree_iter->point.x) {
+            if (succ_min->point == tree_iter->point)
+                break;
+            else if (succ_min->point < tree_iter->point) {
                 start_index = start_node.successor_left;
                 tree_iter = tree_iter->left.get();
             }
-            else if (succ_min->point.x > tree_iter->point.x) {
+            else {
                 start_index = start_node.successor_right;
                 tree_iter = tree_iter->right.get();
-            }
-            else {
-                if (succ_min->point.id < tree_iter->point.id) {
-                    start_index = start_node.successor_left;
-                    tree_iter = tree_iter->left.get();
-                }
-                else if (succ_min->point.id > tree_iter->point.id) {
-                    start_index = start_node.successor_right;
-                    tree_iter = tree_iter->right.get();
-                }
-                else
-                    break;
             }
 
             if (static_cast<unsigned long>(start_index) < tree_iter->secFCNodes.size())
@@ -214,21 +193,14 @@ void FcRangeTree::report_points(Query query, std::vector<Point>& foundPts) {
                 }
             }
 
-            if (pred_max->point.x < tree_iter->point.x) {
+            if (pred_max->point == tree_iter->point)
+                break;
+            else if (pred_max->point < tree_iter->point) {
                 start_index = start_node.successor_left;
                 tree_iter = tree_iter->left.get();
-            } else if (pred_max->point.x > tree_iter->point.x) {
+            } else {
                 start_index = start_node.successor_right;
                 tree_iter = tree_iter->right.get();
-            } else {
-                if (pred_max->point.id < tree_iter->point.id) {
-                    start_index = start_node.successor_left;
-                    tree_iter = tree_iter->left.get();
-                } else if (pred_max->point.id > tree_iter->point.id) {
-                    start_index = start_node.successor_right;
-                    tree_iter = tree_iter->right.get();
-                } else
-                    break;
             }
 
             if (static_cast<unsigned long>(start_index) < tree_iter->secFCNodes.size())
@@ -302,7 +274,7 @@ FcRangeTreeNode* FcRangeTree::find_lca(FcRangeTreeNode* node, FcRangeTreeNode* s
     FcRangeTreeNode* tree_iter = node;
 
     while (tree_iter != nullptr) {
-        if (tree_iter->point.id == succ->point.id || tree_iter->point.id == pred->point.id)
+        if (tree_iter->point == succ->point || tree_iter->point == pred->point)
             return tree_iter;
 
         if (tree_iter->point.x >= succ->point.x) {

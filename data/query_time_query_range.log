@@ -1,21 +1,24 @@
-[2020-05-28 17:13:59.702] [info] Start range tree tester
-[2020-05-28 17:13:59.703] [info] Start query time test with various query range
-[2020-05-28 17:14:00.435] [info] [OrgRangeTree] Start original range tree construction
-[2020-05-28 17:14:02.069] [info] [OrgRangeTree] Start smart secondary tree construction
-[2020-05-28 17:14:13.967] [info] [FcRangeTree] Start factional-cascading range tree construction
-[2020-05-28 17:14:14.676] [info] [FcRangeTree] Start secondary factional-cascading construction
-[2020-05-28 17:14:18.743] [info] Start with query range=10000
-[2020-05-28 17:14:18.770] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=10000, k=101, running time=273429
-[2020-05-28 17:14:18.791] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=10000, k=101, running time=204663
-[2020-05-28 17:14:18.791] [info] Start with query range=20000
-[2020-05-28 17:14:18.823] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=20000, k=400, running time=319106
-[2020-05-28 17:14:18.858] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=20000, k=399, running time=340644
-[2020-05-28 17:14:18.858] [info] Start with query range=50000
-[2020-05-28 17:14:18.937] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=50000, k=2490, running time=753721
-[2020-05-28 17:14:19.043] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=50000, k=2490, running time=1028200
-[2020-05-28 17:14:19.043] [info] Start with query range=100000
-[2020-05-28 17:14:19.279] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=100000, k=9988, running time=2208272
-[2020-05-28 17:14:19.554] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=100000, k=9988, running time=2616049
-[2020-05-28 17:14:19.554] [info] Start with query range=200000
-[2020-05-28 17:14:20.055] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=200000, k=39944, running time=4527218
-[2020-05-28 17:14:20.713] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=200000, k=39944, running time=6099812
+/Users/xiugechen/Desktop/Unimelb/2020Sem1/COMP90077/Project/RangeTree/cmake-build-debug/RangeTree
+[2020-05-29 10:16:39.904] [info] Start range tree tester
+[2020-05-29 10:16:39.905] [info] Start query time test with various query range
+[2020-05-29 10:16:41.039] [info] [OrgRangeTree] Start original range tree construction
+[2020-05-29 10:16:42.451] [info] [OrgRangeTree] Start smart secondary tree construction
+[2020-05-29 10:16:59.128] [info] [FcRangeTree] Start factional-cascading range tree construction
+[2020-05-29 10:16:59.890] [info] [FcRangeTree] Start secondary factional-cascading construction
+[2020-05-29 10:17:04.598] [info] Start with query range=10000
+[2020-05-29 10:17:04.628] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=10000, k=100, running time=300
+[2020-05-29 10:17:04.654] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=10000, k=100, running time=255
+[2020-05-29 10:17:04.654] [info] Start with query range=20000
+[2020-05-29 10:17:04.693] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=20000, k=396, running time=380
+[2020-05-29 10:17:04.741] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=20000, k=396, running time=478
+[2020-05-29 10:17:04.741] [info] Start with query range=50000
+[2020-05-29 10:17:04.828] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=50000, k=2491, running time=824
+[2020-05-29 10:17:04.934] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=50000, k=2491, running time=1021
+[2020-05-29 10:17:04.934] [info] Start with query range=100000
+[2020-05-29 10:17:05.335] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=100000, k=9986, running time=3825
+[2020-05-29 10:17:05.627] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=100000, k=9986, running time=2793
+[2020-05-29 10:17:05.627] [info] Start with query range=200000
+[2020-05-29 10:17:06.149] [info] [ExperimentApp] Finish query time testing on Original Range Tree with datalength=1000000, range=200000, k=40006, running time=4725
+[2020-05-29 10:17:06.827] [info] [ExperimentApp] Finish query time testing on Fractional Cascading Range Tree with datalength=1000000, range=200000, k=40005, running time=6292
+
+Process finished with exit code 0

@@ -29,13 +29,13 @@ void ExperimentApp::construct_time_data_length(const std::vector<uint32_t>& data
         std::vector<Point> naive_copy{vec};
         OrgRangeTree orgRangeTreeNaive;
 
-        long long int startTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+        long long int startTime = std::chrono::duration_cast<std::chrono::microseconds>(
                 std::chrono::high_resolution_clock::now().time_since_epoch()
         ).count();
 
         orgRangeTreeNaive.construct_tree(naive_copy, true);
 
-        long long int endTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+        long long int endTime = std::chrono::duration_cast<std::chrono::microseconds>(
                 std::chrono::high_resolution_clock::now().time_since_epoch()
         ).count();
 
@@ -46,13 +46,13 @@ void ExperimentApp::construct_time_data_length(const std::vector<uint32_t>& data
         std::vector<Point> smart_copy{vec};
         OrgRangeTree orgRangeTreeSmart;
 
-        startTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+        startTime = std::chrono::duration_cast<std::chrono::microseconds>(
                 std::chrono::high_resolution_clock::now().time_since_epoch()
         ).count();
 
         orgRangeTreeSmart.construct_tree(smart_copy, false);
 
-        endTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+        endTime = std::chrono::duration_cast<std::chrono::microseconds>(
                 std::chrono::high_resolution_clock::now().time_since_epoch()
         ).count();
 
@@ -85,14 +85,14 @@ void ExperimentApp::query_time_data_length(const std::vector<uint32_t>& dataLens
         unsigned long long int sum_k = 0;
 
         for (unsigned int i = 0; i < NUM_REPEAT; ++i) {
-            long long int startTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            long long int startTime = std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::high_resolution_clock::now().time_since_epoch()
             ).count();
 
             std::vector<Point> orgResult;
             orgRangeTree.report_points(queryVec[i], orgResult);
 
-            long long int endTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            long long int endTime = std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::high_resolution_clock::now().time_since_epoch()
             ).count();
 
@@ -111,14 +111,14 @@ void ExperimentApp::query_time_data_length(const std::vector<uint32_t>& dataLens
         sum_k = 0;
 
         for (unsigned int i = 0; i < NUM_REPEAT; ++i) {
-            long long int startTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            long long int startTime = std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::high_resolution_clock::now().time_since_epoch()
             ).count();
 
             std::vector<Point> fcResult;
             fcRangeTree.report_points(queryVec[i], fcResult);
 
-            long long int endTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            long long int endTime = std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::high_resolution_clock::now().time_since_epoch()
             ).count();
 
@@ -157,14 +157,14 @@ void ExperimentApp::query_time_query_range(const std::vector<double>& queryRange
         unsigned long long int sum_k = 0;
 
         for (unsigned int i = 0; i < NUM_REPEAT; ++i) {
-            long long int startTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            long long int startTime = std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::high_resolution_clock::now().time_since_epoch()
             ).count();
 
             std::vector<Point> orgResult;
             orgRangeTree.report_points(queryVec[i], orgResult);
 
-            long long int endTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            long long int endTime = std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::high_resolution_clock::now().time_since_epoch()
             ).count();
 
@@ -180,14 +180,14 @@ void ExperimentApp::query_time_query_range(const std::vector<double>& queryRange
         sum_k = 0;
 
         for (unsigned int i = 0; i < NUM_REPEAT; ++i) {
-            long long int startTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            long long int startTime = std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::high_resolution_clock::now().time_since_epoch()
             ).count();
 
             std::vector<Point> fcResult;
             fcRangeTree.report_points(queryVec[i], fcResult);
 
-            long long int endTime = std::chrono::duration_cast<std::chrono::nanoseconds>(
+            long long int endTime = std::chrono::duration_cast<std::chrono::microseconds>(
                     std::chrono::high_resolution_clock::now().time_since_epoch()
             ).count();
 

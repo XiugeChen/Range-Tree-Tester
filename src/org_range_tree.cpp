@@ -23,19 +23,15 @@ inline bool in_range(Point pt, Query query) {
 void OrgRangeTree::construct_tree(std::vector<Point>& points, bool isNaive) {
     spdlog::info("[OrgRangeTree] Start original range tree construction");
 
-    // in-place sort ascendingly by x, break tie by id
-    sort(points.begin(), points.end(),
-         [](const Point& a, const Point& b) -> bool
-         {
-             return a.x == b.x ? a.id < b.id : a.x < b.x;
-         });
+    // in-place sort ascendingly by x, and then by y, break tie by id
+    sort(points.begin(), points.end());
 
     // build on first dimension
     mRoot = build_tree(points, 0, static_cast<int>(points.size() - 1), 1);
 
     // Uncomment if debug
     // spdlog::debug("[OrgRangeTree] Constructed tree in first dimension");
-    // print_tree(root.get(), 0);
+    // print_tree(mRoot.get(), 0);
 
     // build on second dimension, either naively using O(n log^2 n) time, or smartly use O(n log n) time.
     if (isNaive) {
@@ -102,15 +98,10 @@ void OrgRangeTree::build_sec_dim_smart(std::vector<Point>& points, OrgRangeTreeN
 
     for (auto& point : points) {
         // break tie by id
-        if (point.x == node->point.x) {
-            if (point.id < node->point.id)
-                leftPts.emplace_back(point);
-            else if (point.id > node->point.id)
-                rightPts.emplace_back(point);
-            else
-                continue;
+        if (point == node->point) {
+            continue;
         }
-        else if(point.x < node->point.x)
+        else if(point < node->point)
             leftPts.emplace_back(point);
         else
             rightPts.emplace_back(point);
@@ -157,16 +148,20 @@ void OrgRangeTree::query_tree(OrgRangeTreeNode* node, std::vector<Point>& points
     OrgRangeTreeNode* tree_iter = nullptr;
 
     // none of points are in range
-    if (succ_min == nullptr || pred_max == nullptr)
-        return;
-
-    if (fstDim && succ_min->point.x > pred_max->point.x)
-        return;
-    if (!fstDim && succ_min->point.y > pred_max->point.y)
+    if (succ_min == nullptr || pred_max == nullptr || (fstDim && succ_min->point.x > pred_max->point.x)
+        || (!fstDim && succ_min->point.y > pred_max->point.y))
         return;
 
     // find the lowest common ancestor of succ_x_min and pred_x_max
     OrgRangeTreeNode* lca = find_lca(node, succ_min, pred_max, fstDim);
+
+    //std::cout << "Query: " << (fstDim ? "First" : "Second") << ", [" << query.x_lower << "," << query.x_upper << "] * ["
+     //           << query.y_lower << "," << query.y_upper << "]\n";
+
+    //std::cout << "Succ: " << succ_min->point.id << "-" << succ_min->point.x << "-" << succ_min->point.y << std::endl;
+    //std::cout << "Pred: " << pred_max->point.id << "-" << pred_max->point.x << "-" << pred_max->point.y << std::endl;
+    //std::cout << "LCA: " << lca->point.id << "-" << lca->point.x << "-" << lca->point.y << std::endl;
+    //print_tree(lca, 0);
 
     // return lca if it is in range
     if (in_range(lca->point, query))
@@ -176,42 +171,79 @@ void OrgRangeTree::query_tree(OrgRangeTreeNode* node, std::vector<Point>& points
     // If first dimention and succ_min.x <= u.x, then report all the points in u’s right sub-tree whose y-coordinates
     // are in [y_lower, y_upper] in the secondary tree;
     // If second dimention and succ_min.y <= u.y, then report all the points in u’s right sub-tree;
-    tree_iter = succ_min;
-    while(tree_iter->point.id != lca->point.id) {
-        if (in_range(tree_iter->point, query))
-            points.emplace_back(tree_iter->point);
+    if (lca->point.id != succ_min->point.id) {
+        tree_iter = lca->left.get();
 
-        if (fstDim) {
-            if (succ_min->point.x <= tree_iter->point.x && tree_iter->right)
-                query_tree(tree_iter->right->nextDimRoot.get(), points, query, false);
-        }
-        else {
-            if (succ_min->point.y <= tree_iter->point.y)
-                in_order_traverse(tree_iter->right.get(), points);
-        }
+        while(true) {
+            //std::cout << "Next loop\n";
+            //std::cout << tree_iter->point.id << "-" << tree_iter->point.x << "-" << tree_iter->point.y << std::endl;
 
-        tree_iter = tree_iter->parent;
+            if (in_range(tree_iter->point, query))
+                points.emplace_back(tree_iter->point);
+
+            if (fstDim) {
+                if (succ_min->point.x <= tree_iter->point.x && tree_iter->right)
+                    query_tree(tree_iter->right->nextDimRoot.get(), points, query, false);
+
+                if (succ_min->point == tree_iter->point)
+                    break;
+                else if (succ_min->point < tree_iter->point)
+                    tree_iter = tree_iter->left.get();
+                else
+                    tree_iter = tree_iter->right.get();
+            }
+            else {
+                if (succ_min->point.y <= tree_iter->point.y)
+                    in_order_traverse(tree_iter->right.get(), points);
+
+                if (succ_min->point.id == tree_iter->point.id)
+                    break;
+                else if (succ_min->point.y < tree_iter->point.y)
+                    tree_iter = tree_iter->left.get();
+                else if (succ_min->point.y > tree_iter->point.y)
+                    tree_iter = tree_iter->right.get();
+                else
+                    tree_iter = succ_min->point.id < tree_iter->point.id ? tree_iter->left.get() : tree_iter->right.get();
+            }
+        }
     }
 
     // for each node u other than lca on the path from lca to pred_max, add it if it is in range
     // If first dimention and pred_max.x >= u.x, then report all the points in u’s left sub-tree whose y-coordinates
     // are in [y_lower, y_upper] in the secondary tree;
     // If second dimention and pred_max.y >= u.y, then report all the points in u’s left sub-tree;
-    tree_iter = pred_max;
-    while(tree_iter->point.id != lca->point.id) {
-        if (in_range(tree_iter->point, query))
-            points.emplace_back(tree_iter->point);
+    if (lca->point.id != pred_max->point.id) {
+        tree_iter = lca->right.get();
 
-        if (fstDim) {
-            if (pred_max->point.x >= tree_iter->point.x && tree_iter->left)
-                query_tree(tree_iter->left->nextDimRoot.get(), points, query, false);
-        }
-        else {
-            if (pred_max->point.y >= tree_iter->point.y)
-                in_order_traverse(tree_iter->left.get(), points);
-        }
+        while (true) {
+            if (in_range(tree_iter->point, query))
+                points.emplace_back(tree_iter->point);
 
-        tree_iter = tree_iter->parent;
+            if (fstDim) {
+                if (pred_max->point.x >= tree_iter->point.x && tree_iter->left)
+                    query_tree(tree_iter->left->nextDimRoot.get(), points, query, false);
+
+                if (pred_max->point == tree_iter->point)
+                    break;
+                else if (pred_max->point < tree_iter->point)
+                    tree_iter = tree_iter->left.get();
+                else
+                    tree_iter = tree_iter->right.get();
+            }
+            else {
+                if (pred_max->point.y >= tree_iter->point.y)
+                    in_order_traverse(tree_iter->left.get(), points);
+
+                if (pred_max->point.id == tree_iter->point.id)
+                    break;
+                else if (pred_max->point.y < tree_iter->point.y)
+                    tree_iter = tree_iter->left.get();
+                else if (pred_max->point.y > tree_iter->point.y)
+                    tree_iter = tree_iter->right.get();
+                else
+                    tree_iter = pred_max->point.id < tree_iter->point.id ? tree_iter->left.get() : tree_iter->right.get();
+            }
+        }
     }
 }
 
@@ -266,7 +298,7 @@ OrgRangeTreeNode* OrgRangeTree::find_lca(OrgRangeTreeNode* node, OrgRangeTreeNod
     OrgRangeTreeNode* tree_iter = node;
 
     while (tree_iter != nullptr) {
-        if (tree_iter->point.id == succ->point.id || tree_iter->point.id == pred->point.id)
+        if (tree_iter->point == succ->point || tree_iter->point == pred->point)
             return tree_iter;
 
         if (fstDim) {
